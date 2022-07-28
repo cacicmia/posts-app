@@ -3,14 +3,17 @@ import logo from './logo.svg'
 import './App.css'
 import { AppHeader } from './shared/AppHeader'
 import { AppRouter } from './AppRouter'
+import { UsersContext } from './shared/hooks/useUsers'
 
 function App() {
   return (
-    <div className="App">
-      <AppHeader />
+    <UsersContext>
+      <div className="App">
+        <AppHeader />
 
-      <AppRouter />
-    </div>
+        <AppRouter />
+      </div>
+    </UsersContext>
   )
 }
 

@@ -1,19 +1,26 @@
+import { useState } from 'react'
 import { Layout } from '../shared/components/Layout'
 import { Loader } from '../shared/components/Loader'
 import { PostCard } from '../shared/components/PostCard'
 import { usePosts } from '../shared/hooks/usePosts'
-import { PostType } from '../types'
-import { PostSinglePage } from './PostsSinglePage'
+import { useUsers } from '../shared/hooks/useUsers'
+import { PostType, User } from '../types'
 
 export const PostsListPage = () => {
-  const { data: posts, error, loading } = usePosts()
-  console.log(posts, error, loading)
-  if (error || !posts) {
+  const users = useUsers()
+  const { data, error, loading } = usePosts()
+  if (error || !data || !users) {
     return null
   }
   if (loading) {
     return <Loader />
   }
+
+  const posts = data.map((post: PostType) => ({
+    ...post,
+    user: users.find((user: User) => user.id === post.userId)
+  }))
+
   return (
     <Layout>
       {posts.map((post: PostType) => (

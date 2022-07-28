@@ -7,5 +7,8 @@ export interface IAxiosProps {
 
 const baseUrl = process.env.REACT_APP_BACKEND_URL! || 'https://jsonplaceholder.typicode.com'
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: baseUrl
+  baseURL: baseUrl,
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8'
+  }
 })
