@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import { useState, useEffect } from 'react'
 import { axiosInstance } from '../../axios'
 
-export const usePostComments = (id: number) => {
+export const usePostComments = (id: number | string) => {
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<null | Error>(null)

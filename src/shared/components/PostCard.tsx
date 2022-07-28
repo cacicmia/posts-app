@@ -10,12 +10,7 @@ interface IPostCardProps {
 }
 export const postStyle = css`
   ${tw`w-full flex flex-col items-start  my-4 p-2`}
-  &:hover {
-    ${tw` bg-gray-50 rounded-xl `}
-    .post-heading {
-      ${tw`text-green-700 `}
-    }
-  }
+
   .post-heading {
     ${tw` flex flex-col lg:flex-row w-full justify-between	`}
   }
@@ -26,11 +21,20 @@ export const postStyle = css`
     ${tw`self-end py-2`}
   }
 `
+export const linkStyle = css`
+  ${postStyle}
+  &:hover {
+    ${tw` bg-gray-50 rounded-xl `}
+    .post-heading {
+      ${tw`text-green-700 `}
+    }
+  }
+`
 export const PostCard = (props: IPostCardProps) => {
   const { post } = props
   return (
-    <Link to={`/post/${post.id}`}>
-      <div css={postStyle}>
+    <Link to={`/post/${post.id}`} state={post} css={linkStyle}>
+      <div>
         <div className="post-heading">
           <h2 className="title">{post.title}</h2>
           <span className="user">{post.user.name}</span>

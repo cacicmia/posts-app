@@ -10,6 +10,8 @@ export const PostsListPage = () => {
   const users = useUsers()
   const { data, error, loading } = usePosts()
   if (error || !data || !users) {
+    // TODO add error message
+
     return null
   }
   if (loading) {

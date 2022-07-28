@@ -5,12 +5,14 @@ import { Loader } from './Loader'
 import { PostComment } from './PostComment'
 
 interface IPostCommentsProps {
-  id: number
+  id: number | string
 }
 
 export const PostComments = (props: IPostCommentsProps) => {
   const { id } = props
   const { data: comments, error, loading } = usePostComments(id)
+  // TODO add error message
+
   if (error || !comments) {
     return null
   }
