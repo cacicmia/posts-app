@@ -7,10 +7,15 @@ import { Loader } from '../shared/components/Loader'
 import { postStyle } from '../shared/components/PostCard'
 import { PostComments } from '../shared/components/PostComments'
 import { PostType } from '../types'
+import { useContext } from 'react'
+import { LogContext } from '..'
 interface LocationState {
   state: PostType
 }
 export const PostSinglePage = () => {
+  const logMessage = useContext<string | undefined>(LogContext)
+
+  console.log(`${logMessage} ${PostSinglePage.name}`)
   const { id } = useParams()
   const { state: post } = useLocation() as LocationState
   if (!id || !post) {

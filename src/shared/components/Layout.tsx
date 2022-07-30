@@ -1,8 +1,9 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useContext } from 'react'
 /** @jsxImportSource @emotion/react */
 import { css, Interpolation, Theme } from '@emotion/react'
 import tw from 'twin.macro'
-const pageContentStyle = css`
+import { LogContext } from '../..'
+export const pageContentStyle = css`
   ${tw`max-w-full  px-4 sm:px-6 lg:px-8 py-8 w-full mx-auto`}
 `
 interface ILayoutProps {
@@ -11,6 +12,9 @@ interface ILayoutProps {
 }
 
 export const Layout: FC<ILayoutProps> = (props) => {
+  const logMessage = useContext<string | undefined>(LogContext)
+
+  console.log(`${logMessage} ${Layout.name}`)
   const { customCss, children } = props
   return <div css={[pageContentStyle, customCss]}>{children}</div>
 }

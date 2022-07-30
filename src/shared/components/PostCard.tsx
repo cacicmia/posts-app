@@ -4,6 +4,8 @@ import tw from 'twin.macro'
 import { Link } from 'react-router-dom'
 import { PostType } from '../../types'
 import { PostComments } from './PostComments'
+import { useContext } from 'react'
+import { LogContext } from '../..'
 
 interface IPostCardProps {
   post: PostType
@@ -31,6 +33,9 @@ export const linkStyle = css`
   }
 `
 export const PostCard = (props: IPostCardProps) => {
+  const logMessage = useContext<string | undefined>(LogContext)
+  console.log(`${logMessage} ${PostCard.name}`)
+
   const { post } = props
   return (
     <Link to={`/post/${post.id}`} state={post} css={linkStyle}>

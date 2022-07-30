@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
+import { useContext } from 'react'
 import tw from 'twin.macro'
+import { LogContext } from '../..'
 import { usePostComments } from '../hooks/usePostComments'
 import { Loader } from './Loader'
+import { PostCard } from './PostCard'
 import { PostComment } from './PostComment'
 
 interface IPostCommentsProps {
@@ -9,6 +12,8 @@ interface IPostCommentsProps {
 }
 
 export const PostComments = (props: IPostCommentsProps) => {
+  const logMessage = useContext<string | undefined>(LogContext)
+  console.log(`${logMessage} ${PostComments.name}`)
   const { id } = props
   const { data: comments, error, loading } = usePostComments(id)
   // TODO add error message

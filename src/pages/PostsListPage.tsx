@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { LogContext } from '..'
 import { Layout } from '../shared/components/Layout'
 import { Loader } from '../shared/components/Loader'
 import { PostCard } from '../shared/components/PostCard'
+
 import { usePosts } from '../shared/hooks/usePosts'
 import { useUsers } from '../shared/hooks/useUsers'
 import { PostType, User } from '../types'
 
 export const PostsListPage = () => {
+  const logMessage = useContext<string | undefined>(LogContext)
+
+  console.log(`${logMessage} ${PostsListPage.name}`)
   const users = useUsers()
   const { data, error, loading } = usePosts()
   if (error || !data || !users) {
