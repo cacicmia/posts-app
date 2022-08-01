@@ -35,7 +35,6 @@ export const linkStyle = css`
 export const PostCard = (props: IPostCardProps) => {
   const logMessage = useContext<string | undefined>(LogContext)
   console.log(`${logMessage} ${PostCard.name}`)
-
   const { post } = props
   return (
     <Link to={`/post/${post.id}`} state={post} css={linkStyle}>

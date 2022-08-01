@@ -5,6 +5,7 @@ export interface User {
   username: string
   website: string
   address: any
+  email: string
   company: any
 }
 export interface PostType {
@@ -13,4 +14,8 @@ export interface PostType {
   title: string
   body: string
   user: User
+}
+export interface IDropdownOption {
+  label: string
+  value: string
 }
