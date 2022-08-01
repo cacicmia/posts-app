@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo, useState } from 'react'
+import { FC, useContext, useState } from 'react'
 import tw from 'twin.macro'
 import Select, { SingleValue, StylesConfig } from 'react-select'
 
@@ -56,18 +56,16 @@ export const SearchBar: FC<ISearchBarProps> = (props) => {
     label: user.name,
     value: user.id.toString()
   }))
-  const filterOption = (option: IDropdownOption, inputValue: any) => {
+  const filterOption = (option: IDropdownOption, inputValue: string) => {
     const { label, value } = option
     const user = users.find((opt) => opt.id === parseInt(value))
     if (!user) {
       return false
     }
     const ret = checkObject(user, inputValue)
-    console.log('return check', ret)
     return ret
   }
-  const [showClearIcon, setShowClearIcon] = useState(false)
-  const selectedOption = options.find((o: any) => o.value === userId)
+  const selectedOption = options.find((o: IDropdownOption) => o.value === userId?.toString())
 
   return (
     <div css={searchBarContainerStyle}>
@@ -80,11 +78,9 @@ export const SearchBar: FC<ISearchBarProps> = (props) => {
           value={selectedOption}
           filterOption={filterOption}
           options={options}
-          onChange={(e: any) => {
-            console.log('change', e)
-            setUserId(e?.value ?? undefined)
-
-            setInputValue(e?.label ?? '')
+          onChange={(selected?: any) => {
+            setUserId(selected?.value ?? undefined)
+            setInputValue(selected?.label ?? '')
           }}
         />
       </form>

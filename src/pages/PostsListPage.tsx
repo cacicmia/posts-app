@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { LogContext } from '..'
+import { ErrorMessage } from '../shared/components/ErrorMessage'
 import { Layout } from '../shared/components/Layout'
 import { Loader } from '../shared/components/Loader'
 import { PostCard } from '../shared/components/PostCard'
@@ -28,13 +29,11 @@ export const PostsListPage = () => {
     }
   }, [data])
 
-  if (error || !data || !users) {
-    // TODO add error message
-
-    return null
-  }
-  if (loading) {
+  if (loading || !data) {
     return <Loader />
+  }
+  if (error || !users) {
+    return <ErrorMessage title="Something went wrong" />
   }
   return (
     <Layout>

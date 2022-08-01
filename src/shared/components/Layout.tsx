@@ -3,8 +3,9 @@ import { FC, ReactNode, useContext } from 'react'
 import { css, Interpolation, Theme } from '@emotion/react'
 import tw from 'twin.macro'
 import { LogContext } from '../..'
+import { AppHeader } from '../AppHeader'
 export const pageContentStyle = css`
-  ${tw`max-w-full  px-4 sm:px-6 lg:px-8 py-8 w-full mx-auto`}
+  ${tw`w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 mx-auto`}
 `
 interface ILayoutProps {
   customCss?: Interpolation<Theme>
@@ -16,5 +17,10 @@ export const Layout: FC<ILayoutProps> = (props) => {
 
   console.log(`${logMessage} ${Layout.name}`)
   const { customCss, children } = props
-  return <div css={[pageContentStyle, customCss]}>{children}</div>
+  return (
+    <>
+      <AppHeader />
+      <div css={[pageContentStyle, customCss]}>{children}</div>
+    </>
+  )
 }

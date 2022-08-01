@@ -1,9 +1,14 @@
-import { Component, ReactNode } from 'react'
+import { Component, ComponentClass, ErrorInfo, ReactNode } from 'react'
 import { ErrorMessage } from './ErrorMessage'
-// TODO add console.log?
+interface IProps {
+  children?: ReactNode
+}
 
-export class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  constructor(props: any) {
+interface IState {
+  hasError: boolean
+}
+export class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props)
     this.state = { hasError: false }
   }
@@ -12,7 +17,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { hasError
     return { hasError: true }
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // You can also log the error to an error reporting service
     console.error(error, errorInfo)
   }

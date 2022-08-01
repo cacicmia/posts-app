@@ -8,7 +8,7 @@ export const Context = createContext<User[]>([])
 export const useApiUsers = () => {
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<null | Error>(null)
+  const [error, setError] = useState<any>(null)
   useEffect(() => {
     const controller = new AbortController()
     const fetchData = async () => {
@@ -18,8 +18,7 @@ export const useApiUsers = () => {
           signal: controller.signal
         })
         setData(res.data)
-      } catch (err) {
-        //@ts-ignore TODO
+      } catch (err: any) {
         setError(err)
       } finally {
         setLoading(false)

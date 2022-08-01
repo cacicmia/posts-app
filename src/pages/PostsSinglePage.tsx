@@ -9,6 +9,7 @@ import { PostComments } from '../shared/components/PostComments'
 import { PostType } from '../types'
 import { useContext } from 'react'
 import { LogContext } from '..'
+import { ErrorMessage } from '../shared/components/ErrorMessage'
 interface LocationState {
   state: PostType
 }
@@ -19,8 +20,7 @@ export const PostSinglePage = () => {
   const { id } = useParams()
   const { state: post } = useLocation() as LocationState
   if (!id || !post) {
-    // TODO add error message
-    return null
+    return <ErrorMessage title="Something went wrong" />
   }
   return (
     <Layout>

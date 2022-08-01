@@ -5,7 +5,7 @@ import { axiosInstance, IAxiosProps } from '../../axios'
 export const usePosts = (userId: number | undefined) => {
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<null | Error>(null)
+  const [error, setError] = useState<any>(null)
   useEffect(() => {
     const controller = new AbortController()
     const fetchData = async () => {
@@ -16,8 +16,7 @@ export const usePosts = (userId: number | undefined) => {
           signal: controller.signal
         })
         setData(res.data)
-      } catch (err) {
-        //@ts-ignore TODO
+      } catch (err: any) {
         setError(err)
       } finally {
         setLoading(false)

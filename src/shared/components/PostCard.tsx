@@ -38,7 +38,7 @@ export const PostCard = (props: IPostCardProps) => {
   const { post } = props
   return (
     <Link to={`/post/${post.id}`} state={post} css={linkStyle}>
-      <div>
+      <div tw="w-full">
         <div className="post-heading">
           <h2 className="title">{post.title}</h2>
           <span className="user">{post.user.name}</span>

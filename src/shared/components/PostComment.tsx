@@ -3,11 +3,14 @@ import tw from 'twin.macro'
 import { css } from '@emotion/react'
 import { useContext } from 'react'
 import { LogContext } from '../..'
+import { CommentType } from '../../types'
 const commentStyle = css`
   ${tw`w-full p-4 border-b border-gray-500 flex flex-col self-center mx-auto bg-blue-100`}
 `
-
-export const PostComment = ({ comment }: any) => {
+interface IPostCommentProps {
+  comment: CommentType
+}
+export const PostComment = ({ comment }: IPostCommentProps) => {
   const logMessage = useContext<string | undefined>(LogContext)
   console.log(`${logMessage} ${PostComment.name}`)
   return (
